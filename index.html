@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Moedas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Conversor de Moedas</h1>
+        <form action="converter.php" method="post">
+            <label for="moeda_origem">Moeda de Origem:</label>
+            <select name="moeda_origem" id="moeda_origem" required>
+                <option value="USD">Dólar (USD)</option>
+                <option value="EUR">Euro (EUR)</option>
+                <option value="BRL">Real (BRL)</option>
+                <option value="ARS">Peso Argentino (ARS)</option>
+            </select>
+            
+            <label for="moeda_destino">Moeda de Destino:</label>
+            <select name="moeda_destino" id="moeda_destino" required>
+                <option value="USD">Dólar (USD)</option>
+                <option value="EUR">Euro (EUR)</option>
+                <option value="BRL">Real (BRL)</option>
+                <option value="ARS">Peso Argentino (ARS)</option>
+            </select>
+            
+            <label for="valor">Valor:</label>
+            <input type="number" name="valor" id="valor" step="0.01" required>
+
+            <input type="submit" value="Converter">
+        </form>
+    </div>
+</body>
+</html>
