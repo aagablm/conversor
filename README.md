@@ -37,7 +37,12 @@ Coloque o diretório do projeto na pasta htdocs (XAMPP).
 
 5. **Acesse o projeto no navegador:**
 Abra o navegador e acesse http://localhost/conversor/index.html.
-   
+
+6. **Também é possível acessar a pasta no terminal e rodar o comando:**
+```bash
+   php -S localhost:8000
+```
+
 ## 🤝 Desenvolvedores
 
 As seguintes pessoas contribuíram para este projeto:
