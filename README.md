@@ -3,6 +3,8 @@
 
 Um conversor de moedas simples que permite ao usuário converter valores entre diferentes moedas utilizando taxas de câmbio obtidas de uma API externa. O projeto demonstra conceitos de programação funcional, como funções puras e de ordem superior.
 
+![image](https://github.com/user-attachments/assets/0efdefea-5ce2-4616-a5ed-32cd0c5a944c)
+
 ## Funcionalidades
 
 - Entrada de múltiplos valores para conversão.
