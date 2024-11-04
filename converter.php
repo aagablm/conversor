@@ -25,18 +25,19 @@ function obter_taxa_cambio($moeda_origem, $moeda_destino) {
 // Captura os dados do formulário
 $moeda_origem = $_POST['moeda_origem'];
 $moeda_destino = $_POST['moeda_destino'];
-$valor_input = $_POST['valor'];
+$valores_input = $_POST['valores'];
 
-// Valida a entrada
-if (!validar_numero($valor_input)) {
-    die("Por favor, insira um valor numérico positivo.");
-}
+// Separa os valores e os valida
+$valores_array = array_map('trim', explode(';', $valores_input));
+$valores_validos = array_filter($valores_array, 'validar_numero');
 
 // Obtém a taxa de conversão da API
 $taxa_conversao = obter_taxa_cambio($moeda_origem, $moeda_destino);
 
-// Converte o valor
-$valor_convertido = converter_moeda($valor_input, $taxa_conversao);
+// Converte os valores
+$valores_convertidos = array_map(function($valor) use ($taxa_conversao) {
+    return converter_moeda($valor, $taxa_conversao);
+}, $valores_validos);
 
 // Exibe o resultado
 ?>
@@ -51,7 +52,15 @@ $valor_convertido = converter_moeda($valor_input, $taxa_conversao);
 <body>
     <div class="container">
         <h1>Resultado da Conversão</h1>
-        <p class="result"><?php echo "{$valor_input} {$moeda_origem} = " . number_format($valor_convertido, 2) . " {$moeda_destino}"; ?></p>
+        <ul class="result">
+            <?php
+                foreach ($valores_validos as $index => $valor) {
+                    $valor_formatado = number_format($valor, 2, ',', '.');
+                    $valor_convertido_formatado = number_format($valores_convertidos[$index], 2, ',', '.');
+                    echo "<li>{$valor_formatado} {$moeda_origem} = {$valor_convertido_formatado} {$moeda_destino}</li>";
+                }
+            ?>
+        </ul>
         <a href="index.html">Voltar</a>
     </div>
 </body>

@@ -7,30 +7,53 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Conversor de Moedas</h1>
-        <form action="converter.php" method="post">
-            <label for="moeda_origem">Moeda de Origem:</label>
-            <select name="moeda_origem" id="moeda_origem" required>
-                <option value="USD">Dólar (USD)</option>
-                <option value="EUR">Euro (EUR)</option>
-                <option value="BRL">Real (BRL)</option>
-                <option value="ARS">Peso Argentino (ARS)</option>
-            </select>
-            
-            <label for="moeda_destino">Moeda de Destino:</label>
-            <select name="moeda_destino" id="moeda_destino" required>
-                <option value="USD">Dólar (USD)</option>
-                <option value="EUR">Euro (EUR)</option>
-                <option value="BRL">Real (BRL)</option>
-                <option value="ARS">Peso Argentino (ARS)</option>
-            </select>
-            
-            <label for="valor">Valor:</label>
-            <input type="number" name="valor" id="valor" step="0.01" required>
-
-            <input type="submit" value="Converter">
-        </form>
+    <div class="main">
+        <div class="container">
+            <h1>Conversor de Moedas</h1>
+            <form action="converter.php" method="post">
+                <label for="moeda_origem">Moeda de Origem:</label>
+                <select name="moeda_origem" id="moeda_origem" required>
+                    <!-- As opções serão carregadas dinamicamente -->
+                </select>
+                
+                <label for="moeda_destino">Moeda de Destino:</label>
+                <select name="moeda_destino" id="moeda_destino" required>
+                    <!-- As opções serão carregadas dinamicamente -->
+                </select>
+                
+                <label for="valores">Valores (separados por ponto e vírgula):</label>
+                <input type="text" name="valores" id="valores" required>                
+    
+                <input type="submit" value="Converter">
+            </form>
+        </div>
+        <div>
+            <p>Ana Gabriela Lima e Laisa Garlini</p>
+        </div>
     </div>
+    <script>
+        async function carregarMoedas() {
+            const response = await fetch('https://api.exchangerate-api.com/v4/latest/BRL'); // definindo a moeda base
+            const data = await response.json();
+            const moedas = Object.keys(data.rates);
+            const selectMoedaOrigem = document.getElementById('moeda_origem');
+            const selectMoedaDestino = document.getElementById('moeda_destino');
+            
+            // Adiciona opções às duas listas de seleção
+            moedas.forEach(moeda => {
+                const option = document.createElement('option');
+                option.value = moeda;
+                option.textContent = `${moeda} (${data.rates[moeda]})`;
+                selectMoedaOrigem.appendChild(option);
+                
+                const optionDestino = document.createElement('option');
+                optionDestino.value = moeda;
+                optionDestino.textContent = `${moeda} (${data.rates[moeda]})`;
+                selectMoedaDestino.appendChild(optionDestino);
+            });
+        }
+        
+        carregarMoedas();
+    </script>
 </body>
 </html>
