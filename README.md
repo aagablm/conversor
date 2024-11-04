@@ -22,7 +22,22 @@ Um conversor de moedas simples que permite ao usuário converter valores entre d
 - `converter.php`: Script PHP que processa a conversão e exibe os resultados.
 - `style.css`: Folha de estilos para a interface.
 
-  
+## Como Instalar e Executar
+
+1. **Clone o repositório**:
+   ```bash
+   git clone https://github.com/aagablm/conversor
+2. **Navegue até o diretório do projeto:**
+   ```bash
+   cd conversor
+
+4. **Configure o servidor local:**
+Utilize um servidor como XAMPP.
+Coloque o diretório do projeto na pasta htdocs (XAMPP).
+
+5. **Acesse o projeto no navegador:**
+Abra o navegador e acesse http://localhost/conversor/index.html.
+   
 ## 🤝 Desenvolvedores
 
 As seguintes pessoas contribuíram para este projeto:
